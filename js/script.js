@@ -1,4 +1,5 @@
 function calendar(id, year, month) {
+  let link = "http://api.tvmaze.com/schedule?country=US&date=2014-12-01";
   var Dlast = new Date(year,month+1,0).getDate(),
       D = new Date(year,month,Dlast),
       DNlast = new Date(D.getFullYear(),D.getMonth(),Dlast).getDay(),
@@ -14,28 +15,31 @@ function calendar(id, year, month) {
     if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
       calendar += '<td class="today">' + i;
     }else{
-      calendar += '<td>' + i;
+      calendar += `<td> <a href=${link}>${i}</a>`;
     }
     if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0) {
       calendar += '<tr>';
     }
   }
-  
-  for(var  i = DNlast; i < 7; i++) calendar += '<td> ';
+  for(var  i = DNlast; i < 7; i++) calendar += '<td> ';
   document.querySelector('#'+id+' tbody').innerHTML = calendar;
   document.querySelector('#'+id+' thead td:nth-child(2)').innerHTML = month[D.getMonth()];
   document.querySelector('#'+id+' thead td:nth-child(2)').dataset.month = D.getMonth();
   document.querySelector('#'+id+' thead td:nth-child(2)').dataset.year = D.getFullYear();
   if (document.querySelectorAll('#'+id+' tbody tr').length < 5) {  // чтобы при перелистывании месяцев не "подпрыгивала" вся страница, добавляется ряд пустых клеток. Итог: всегда 6 строк для цифр
-      document.querySelector('#'+id+' tbody').innerHTML += '<tr><td> <td> <td> <td> <td> <td> <td> ';
+      document.querySelector('#'+id+' tbody').innerHTML += `<tr><td> <td> <td> <td> <td> <td> <td> ` + link;
   }
-  }
-  calendar("calendar", new Date().getFullYear(), new Date().getMonth());
-  // переключатель минус месяц
-  document.querySelector('#calendar thead tr:nth-child(1) td:nth-child(1)').onclick = function() {
-    calendar("calendar", document.querySelector('#calendar thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month)-1);
-  }
-  // переключатель плюс месяц
-  document.querySelector('#calendar thead tr:nth-child(1) td:nth-child(3)').onclick = function() {
-    calendar("calendar", document.querySelector('#calendar thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month)+1);
-  }
+  
+}
+calendar("calendar", new Date().getFullYear(), new Date().getMonth());
+// переключатель минус месяц
+document.querySelector('#calendar thead tr:nth-child(1) td:nth-child(1)').onclick = function() {
+  calendar("calendar", document.querySelector('#calendar thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month)-1);
+}
+// переключатель плюс месяц
+document.querySelector('#calendar thead tr:nth-child(1) td:nth-child(3)').onclick = function() {
+  calendar("calendar", document.querySelector('#calendar thead td:nth-child(2)').dataset.year, parseFloat(document.querySelector('#calendar thead td:nth-child(2)').dataset.month)+1);
+}
+
+//ссылка на афишу
+

@@ -39,3 +39,7 @@ tbody td{
 .arrow{
   width: 8px;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
