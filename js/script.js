@@ -46,8 +46,8 @@ function dataProcessing(date, request){
     newDate = newDate.setDate(newDate.getDate()+1);
     let nextDay = new Date(newDate).toLocaleString('ru', option);
 
-    $('#thisDay').append(`<h4>${thisDay}</h4>`)
-    $('#nextDay').append(`<h4>${nextDay}</h4>`)
+    $('#thisDay').append(`<h2>${thisDay}</h2>`)
+    $('#nextDay').append(`<h2>${nextDay}</h2>`)
 
     let newNextDay = new Date(newDate).toLocaleString('en-CA', {year: 'numeric', month: 'numeric', day: 'numeric'});
     let requestThisDay = request + date;
@@ -60,11 +60,14 @@ function dataProcessing(date, request){
           return false
         }
 
-        $('#thisDay').append(`<div>
-          <h5>${value.show.name}</h5>
-          <img src=${value.show.image.medium} alt='picture' style='width:80px'>
-          <span>${value.season}</span>
-          <span>${value.number}</span>
+        $('#thisDay').append(`<div class='content__block'>
+          <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
+          <div>
+            <h5>${value.show.name}</h5>
+            <span>${new Date(value.show.premiered).getFullYear()}</span><br>
+            <span>Сезон ${value.season}</span>
+            <span>Эпизод ${value.number}</span>
+          </div>
         </div>`)
         
       })
@@ -81,15 +84,18 @@ function dataProcessing(date, request){
           return false
         }
 
-        $('#nextDay').append(`<div>
+        $('#nextDay').append(`<div class='content__block'>
+        <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
+        <div>
           <h5>${value.show.name}</h5>
-          <img src=${value.show.image.medium} alt='picture' style='width:80px'>
+          <span>${new Date(value.show.premiered).getFullYear()}</span><br>
           <span>Сезон ${value.season}</span>
-          <span>Серия ${value.number}</span>
+          <span>Эпизод ${value.number}</span>
+        </div>
         </div>`)
         
       })
-        console.log(data)
+        
         
         
     }, "json" );

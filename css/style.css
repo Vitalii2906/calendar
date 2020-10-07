@@ -54,9 +54,22 @@ h3{
   border-bottom: 1px solid silver;
   padding: 10px 0 10px 0;
 }
+h5{
+  margin-top: 0;
+}
 .show_icon{
   width: 100px;
 }
+
+.content__block{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px 0 50px;
+}
+span{
+  font-size: 14px;
+}
+
 
 
 
