@@ -8,15 +8,7 @@ $('#datepicker').datepicker({
   dayNamesMin : ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
   onSelect: function (date) {
     dataProcessing(date, request)
-    /*let option = {year: 'numeric', month: 'long', day: 'numeric'};
-    let thisDay = new Date(date).toLocaleString('ru', option);
-    let newDate = new Date(date);
-    newDate = newDate.setDate(newDate.getDate()+1);
-    let nextDay = new Date(newDate).toLocaleString('ru', option);
-
-    $('#thisDay').append(`<h4>${thisDay}</h4>`)
-    $('#nextDay').append(`<h4>${nextDay}</h4>`)
-    */
+    
 }
 });
 let home = $("#home")
