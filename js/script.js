@@ -84,8 +84,8 @@ function dataProcessing(date, request){
         $('#nextDay').append(`<div>
           <h5>${value.show.name}</h5>
           <img src=${value.show.image.medium} alt='picture' style='width:80px'>
-          <span>${value.season}</span>
-          <span>${value.number}</span>
+          <span>Сезон ${value.season}</span>
+          <span>Серия ${value.number}</span>
         </div>`)
         
       })
