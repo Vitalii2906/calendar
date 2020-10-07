@@ -19,9 +19,10 @@ $('#datepicker').datepicker({
     */
 }
 });
-var home = $("#home")
-var catalog = $("#catalog")
-var back = $("#back")
+let home = $("#home")
+let catalog = $("#catalog")
+
+let back = $("#back")
 
 $("tbody td").on("click", function(event){
   home.hide();
@@ -53,50 +54,107 @@ function dataProcessing(date, request){
     let requestThisDay = request + date;
     let requestNextDay = request + newNextDay;
 
+    
     $.get(requestThisDay, function(data) {
+      
       $.each(data, function(index, value){
         
         if(index === 4){
           return false
         }
-
-        $('#thisDay').append(`<div class='content__block'>
-          <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
-          <div>
-            <h5>${value.show.name}</h5>
-            <span>${new Date(value.show.premiered).getFullYear()}</span><br>
-            <span>Сезон ${value.season}</span>
-            <span>Эпизод ${value.number}</span>
-          </div>
-        </div>`)
-        
+        if(value.show.image.medium !== null){
+          $('#thisDay').append(`<div class='content__block'>
+            <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
+            <div>
+              <h5>${value.show.name}</h5>
+              <span>${new Date(value.show.premiered).getFullYear()}</span><br>
+              <span>Сезон ${value.season}</span>
+              <span>Эпизод ${value.number}</span>
+            </div>
+          </div>`)
+        }
       })
-        console.log(data)
+      $('#thisDay').append(`<div class='allShows'>Ещё ${data.length} сериала</div>`) 
+      $('#thisDay .allShows').on('click', function(event){
+        $('#thisDay .allShows').hide();
+        $('#thisDay__full').show();
+        
+        $.each(data, function(index, value){
+        
+          if(index > 4 && value.show.image.medium !== null){
+            $('#thisDay__full').append(`<div class='content__block'>
+            <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
+            <div>
+              <h5>${value.show.name}</h5>
+              <span>${new Date(value.show.premiered).getFullYear()}</span><br>
+              <span>Сезон ${value.season}</span>
+              <span>Эпизод ${value.number}</span>
+            </div>
+            
+          </div>`)
+          }
+        })
+        $('#thisDay__full').append(`<div class='close'>Показать основные</div>`)
+        $('#thisDay__full').on('click', function(event){
+          $('#thisDay__full').hide();
+          $('#thisDay .allShows').show();
+        })
+      })
+      console.log(data)
         
         
     }, "json" );
 
 
     $.get(requestNextDay, function(data) {
+      
       $.each(data, function(index, value){
         
         if(index === 4){
           return false
         }
-
-        $('#nextDay').append(`<div class='content__block'>
-        <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
-        <div>
-          <h5>${value.show.name}</h5>
-          <span>${new Date(value.show.premiered).getFullYear()}</span><br>
-          <span>Сезон ${value.season}</span>
-          <span>Эпизод ${value.number}</span>
-        </div>
-        </div>`)
+        if(value.show.image.medium !== null){
+          $('#nextDay').append(`<div class='content__block'>
+            <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
+            <div>
+              <h5>${value.show.name}</h5>
+              <span>${new Date(value.show.premiered).getFullYear()}</span><br>
+              <span>Сезон ${value.season}</span>
+              <span>Эпизод ${value.number}</span>
+            </div>
+          </div>`)
+        }
+        
         
       })
+      $('#nextDay').append(`<div class='allShows'>Ещё ${data.length} сериала</div>`)  
+      $('#nextDay .allShows').on('click', function(event){
+        $('#nextDay .allShows').hide();
+        $('#nextDay__full').show();
         
+        $.each(data, function(index, value){
         
+          if(value.show.image.medium !== null){
+            $('#nextDay__full').append(`<div class='content__block'>
+            <div><img src=${value.show.image.medium} alt='picture' style='width:80px'></div>
+            <div>
+              <h5>${value.show.name}</h5>
+              <span>${new Date(value.show.premiered).getFullYear()}</span><br>
+              <span>Сезон ${value.season}</span>
+              <span>Эпизод ${value.number}</span>
+            </div>
+            
+          </div>`)
+          }
+        })
+        $('#nextDay__full').append(`<div class='close'>Показать основные</div>`)
+        $('#nextDay__full').on('click', function(event){
+          $('#nextDay__full').hide();
+          $('#nextDay .allShows').show();
+
+        })
+      })
         
     }, "json" );
 }
+

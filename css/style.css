@@ -69,6 +69,17 @@ h5{
 span{
   font-size: 14px;
 }
+.close,
+.allShows{
+  margin: 0 auto;
+  width: 50%;
+  padding: 5px;
+  border: 1px solid silver;
+  background-color: rgb(224, 217, 217);
+}
+.thisDay__full{
+  display: none;
+}
 
 
 
