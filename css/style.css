@@ -1,3 +1,9 @@
+header span{
+  margin-top: 5px;
+}
+header img{
+  width: 13px;
+}
 body{
   margin: 0;
   padding: 0;
@@ -6,40 +12,52 @@ body{
 h1{
   margin: 0;
   padding: 15px 0 15px 0;
-  background-color: rgb(235, 227, 227);
+  background-color: rgb(197, 193, 193);
+  z-index: 0;
 }
-.content{
-  padding: 30px;
-}
-img{
-  width: 100%;
+.tv{
+  width: 80%;
   max-width: 300px;
 }
-#calendar {
-  width: 100%;
-  font: monospace;
-  line-height: 1.2em;
-  font-size: 15px;
-  text-align: center;
-}
-.month{
-  background-color: rgb(235, 227, 227);
-}
-thead td{
-  padding: 10px 0 10px 0;
-}
-tbody td{
-  border: 1px solid silver ;
-  padding: 5px 5px 5px 5px;
-}
-
-#calendar thead tr:nth-child(1) td:nth-child(1):hover, #calendar thead tr:nth-child(1) td:nth-child(3):hover {
-  cursor: pointer;
+.content p{
+  padding: 20px;
 }
 .arrow{
   width: 8px;
 }
-a{
-  text-decoration: none;
-  color: black;
+#datepicker{
+  width: 100%;
+  text-align: center;
 }
+
+.ui-datepicker{
+  margin: 0 auto;
+  width: 90% !important;
+}
+.ui-datepicker tbody td span,
+.ui-datepicker tbody td a{
+  text-align: center;
+}
+#catalog{
+  display: none;
+}
+#back{
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  top: 20px;
+}
+h3{
+  margin-top: 0;
+  border-bottom: 1px solid silver;
+  padding: 10px 0 10px 0;
+}
+.show_icon{
+  width: 100px;
+}
+
+
+
+

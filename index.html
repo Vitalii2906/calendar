@@ -4,32 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendar</title>
-  <link rel="stylesheet" href="./css/style.css" >
+  <link href="./css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
   <header>
+    <span id="back"><img src="./img/Prev (idle).png"></span>
     <h1>SUPER FILM</h1>
   </header>
   <main>
-    <section class="content">
-      <img src="./img/tv.png" alt="tv">
-      <p>Для получения списка сериалов, пожалуйста, выберите необходимый месяц и день.</p>
+    <section id="home">
+      <div class="content">
+        <img class="tv" src="./img/tv.png" alt="tv">
+        <p>Для получения списка сериалов, пожалуйста, выберите необходимый месяц и день.</p>
+      </div>
+      <div id="datepicker"></div>
+    </section>
+    
+    <section id="catalog">
+      <div id="thisDay"></div>
+      <div id="nextDay"></div>
+    </section>
 
-    </section>
-    <section class="calendar">
-      <div align=center>
-        <div>
-        <table id="calendar" cellspacing="0">
-          <thead>
-            <tr class="month"><td><img class="arrow" src="./img/Prev (idle).png" alt="prev" ><td colspan="5"><td><img class="arrow" src="img/Next (hover).png" alt="next">
-          </thead>
-          <tbody></tbody>
-        </table>
-        </div>
-        </div>
-    </section>
+    <section id="fullContent"></section>
   </main>
-
-  <script src="./js/script.js"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>
